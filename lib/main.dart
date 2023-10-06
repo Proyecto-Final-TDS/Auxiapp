@@ -1,3 +1,5 @@
+import 'package:examen1/views/contact-info.dart';
+import 'package:examen1/views/home.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -9,10 +11,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: appTitle,
-      home: MyHomePage(title: appTitle),
-    );
+    return MaterialApp(
+        title: appTitle,
+        home: MyHomePage(title: appTitle),
+        theme: ThemeData(
+          primarySwatch: Colors.red,
+        ));
   }
 }
 
@@ -27,6 +31,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
+  static var screens = [
+    ContainerConBotonRojo(),
+    ContainerConBotonRojo(),
+    ContainerConBotonRojo(),
+    contactinfo(),
+    ContainerConBotonRojo()
+  ];
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
@@ -58,9 +69,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(widget.title)),
-      body: Center(
-        child: _widgetOptions[_selectedIndex],
-      ),
+      // body: Center(
+      //   child: _widgetOptions[_selectedIndex],
+      // ),
+      body: IndexedStack(index: _selectedIndex, children: screens),
       drawer: Drawer(
         // Add a ListView to the drawer. This ensures the user can scroll
         // through the options in the drawer if there isn't enough vertical
@@ -71,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             const DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: Colors.red,
               ),
               child: Text('AuxiApp V1.0',
                   style: TextStyle(
@@ -85,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   Icon(
                     Icons.home,
-                    color: Colors.blue,
+                    color: Colors.red,
                     size: 35,
                   ),
                   SizedBox(
@@ -93,9 +105,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   Text('Inicio'),
                 ],
               ),
-              selected: _selectedIndex == 3,
+              selected: _selectedIndex == 0,
               onTap: () {
-                _onItemTapped(3);
+                _onItemTapped(0);
                 // Then close the drawer
                 Navigator.pop(context);
               },
@@ -118,9 +130,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       )),
                 ],
               ),
-              selected: _selectedIndex == 3,
+              selected: _selectedIndex == 1,
               onTap: () {
-                _onItemTapped(3);
+                _onItemTapped(1);
                 // Then close the drawer
                 Navigator.pop(context);
               },
@@ -130,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   Icon(
                     Icons.chat,
-                    color: Colors.blue,
+                    color: Colors.red,
                     size: 35,
                   ),
                   SizedBox(
@@ -138,9 +150,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   Text('Chat de Emergencia'),
                 ],
               ),
-              selected: _selectedIndex == 3,
+              selected: _selectedIndex == 2,
               onTap: () {
-                _onItemTapped(3);
+                _onItemTapped(2);
                 // Then close the drawer
                 Navigator.pop(context);
               },
@@ -150,7 +162,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   Icon(
                     Icons.contact_page,
-                    color: Colors.blue,
+                    color: Colors.red,
                     size: 35,
                   ),
                   SizedBox(
@@ -170,7 +182,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   Icon(
                     Icons.info,
-                    color: Colors.blue,
+                    color: Colors.red,
                     size: 35,
                   ),
                   SizedBox(
@@ -178,9 +190,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   Text('Nosotros'),
                 ],
               ),
-              selected: _selectedIndex == 3,
+              selected: _selectedIndex == 4,
               onTap: () {
-                _onItemTapped(3);
+                _onItemTapped(4);
                 // Then close the drawer
                 Navigator.pop(context);
               },
